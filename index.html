@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Job Dashboard | By Code Info</title>
+  <!-- CSS Styles -->
+  <style>
+    /*  import google fonts */
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+    *{
+      margin: 0;
+      padding: 0;
+      outline: none;
+      border: none;
+      text-decoration: none;
+      list-style: none;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body{
+      background: rgb(255, 255, 255);
+    }
+    .container{
+      display: flex;
+      width: 1200px;
+      margin: auto;
+    }
+    nav{
+      position: sticky;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 280px;
+      height: 110vh;
+      background: #ececec;
+    }
+    
+    .navbar{
+      width: 80%;
+      margin: 0 auto;
+    }
+    .logo{
+      margin: 2rem 0 1rem 0;
+      padding-bottom: 3rem;
+      display: flex;
+      align-items: center;
+    }
+    .logo img{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    .logo h1{
+      margin-left: 1rem;
+      text-transform: uppercase;
+    }
+    ul{
+      margin: 0 auto;
+    }
+    li{
+      padding-bottom: 2rem;
+    }
+    li a{
+      font-size: 14px;
+      color: rgb(85, 83, 83);
+    }
+   
+    .nav-item{}
+    nav i{
+      width: 40px;
+      font-size: 16px;
+      text-align: center;
+    }
+    .logout{
+      position: absolute;
+      bottom: 20px;
+    }
+    /* Main Section */
+    .main{
+      width: 100%;
+    }
+    .main-top{
+      width: 100%;
+      background: #fff;
+      padding: 10px;
+      text-align: center;
+      font-size: 18px;
+      letter-spacing: 2px;
+      border: 0.5 solid gainsboro;
+      text-transform: uppercase;
+      color: rgb(43, 43, 43);
+    }
+    .main-body{
+      padding: 10px 10px 10px 20px;
+      border-top: 1px solid #ccc;
+    }
+    h1{
+      margin: 20px 10px;
+    }
+    .search_bar{
+      display: flex;
+      padding: 10px;
+      justify-content: space-between;
+    }
+    .search_bar input{
+      width: 50%;
+      padding: 10px;
+      border: 1px solid rgb(190, 190, 190);
+    }
+    .search_bar input:focus{
+      border: 1px solid blueviolet;
+    }
+    .search_bar select{
+      border: 1px solid rgb(190, 190, 190);
+      padding: 10px;
+      margin-left: 2rem;
+    }
+    .search_bar .filter{
+      width: 300px;
+    }
+    .formcontent{
+      width: 85%;
+      display: flex;
+      padding: 10px;
+      justify-content: space-between;
+    }
+    .tags_bar{
+      width: 30%;
+      display: flex;
+      padding: 10px;
+      flex-direction: column;
+    
+    }
+    .bar{
+      padding: 10px;
+      border: 2px solid rgb(190, 190, 190);
+      border-radius: 10px;
+    }
+    .profile-photo {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+        background-color: #ddd;
+        overflow: hidden;
+    }
+    .cover-photo {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 20px;
+        background-color: #ddd;
+        overflow: hidden;
+    }
+    .tag{
+      background: #fff;
+      margin-top: 10px;
+      padding: 10px 15px;
+      border-radius: 20px;
+      align-items: center;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .tag i{
+      margin-right: 0.7rem;
+    }
+    .row{
+      display: flex;
+      padding: 10px;
+      margin-top: 1.3rem;
+      justify-content: space-between;
+    }
+    .row p{
+      color: rgb(54, 54, 54);
+      font-size: 15px;
+    }
+    .row p span{
+      color: blueviolet;
+    }
+    .main-card{
+      width: 100%;
+      padding: 15px;
+      cursor: pointer;
+      display: flex;
+      border-radius: 10px;
+      background: #fff;
+      margin-right: 15px;
+      justify-content: space-between;
+      border: 2px solid rgb(190, 190, 190);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+    }
+    .job_details{
+      display: flex;
+    }
+    .job_details .img{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .job_details .img i{
+      width: 70px;
+      font-size: 3rem;
+      margin-left: 1rem;
+      padding: 10px;
+      color: rgb(82, 22, 138);
+      background: rgb(216, 205, 226);
+    }
+    .job_details .text{
+      margin-left: 2.3rem;
+    }
+    .job_details .text span{
+      color: rgb(116, 112, 112);
+    }
+    .job_salary{
+      text-align: right;
+      color: rgb(54, 54, 54);
+    }
+    .main-card:active{
+      border: 2px solid blueviolet;
+      transition: 0.4s;
+    }
+    .profile-info {
+      display: flex;
+      align-items: center; 
+    }
+
+    .user-info {
+      margin-left: 10px; 
+    }
+
+    .profile-image {
+      width: 25px; 
+      height: 25px; 
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .profile-img {
+      width: 50px; 
+      height: 50px; 
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; 
+    }
+
+    .username {
+      font-weight: semibold; 
+    }
+
+    .title {
+      font-style: italic; 
+      font-size: smaller;
+    }
+    .pragraph{
+      margin: 8px;
+    }
+    .personal-details {
+      width: 63%;
+      overflow: hidden;
+      transition: width 0.5s ease;
+      padding: 15px;
+      border: 2px solid rgb(190, 190, 190);
+      border-radius: 10px;
+    }
+    .personal-details.show {
+      width: 40%;
+    }
+    .personal-details form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .personal-details form input[type="text"],
+    .personal-details form input[type="email"] {
+      width: 100%;
+      padding: 0.5rem;
+     
+      background-color: rgb(239, 242, 248);
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+    .personal-details form .name-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .personal-details form .name-container input[type="text"] {
+      width: 100%;
+    }
+    .btn-container{
+      justify-content: end;
+      display: flex;
+    }
+    .btn {
+      padding: 10px 20px;
+      background-color: blue; /* Blue color */
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .labl {
+  font-size: small; 
+  font-weight: 300;
+}
+
+    .btn1 {
+      padding: 10px 20px;
+      color: red;
+      border: 1 solid red;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+    .invalid {
+      border-color: red;
+      .image-section {
+  margin-bottom: 20px;
+}
+
+.image-preview {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+    }
+    .light-blue-bg {
+      background-color: lightblue;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <div class="navbar">
+        <div class="logo">
+          <div style="font-size:large; font-weight: 500; color: blue;">ADMIN PANEL</div>
+        </div>
+        <p class="pragraph">Menu</p>
+        <ul>
+          <li><a href="#">
+            <i class="fas fa-user"></i>
+            <span class="nav-item">Dashboard</span>
+          </a></li>
+          <li><a href="#">
+            <i class="fas fa-chart-bar"></i>
+            <span class="nav-item">Analytics</span>
+          </a></li>
+          <li><a href="#">
+            <i class="fas fa-tasks"></i>
+            <span class="nav-item">Jobs Board</span>
+          </a></li>
+          <li><a href="#">
+            <i class="fab fa-dochub"></i>
+            <span class="nav-item">Documents</span>
+          </a></li>
+        </ul>
+        <p class="pragraph">Account</p>
+        <ul>
+          <li><a href="#">
+            <i class="fas fa-cog"></i>
+            <span class="nav-item">Settings</span>
+          </a></li>
+          <li><a href="#">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="nav-item">Sign out</span>
+          </a></li>
+          <li><a href="#">
+            <i class="fas fa-question-circle"></i>
+            <span class="nav-item">Help</span>
+          </a></li>
+          <li>
+            <a href="#" class="logout">
+              <div class="profile-info">
+                <div class="profile-image">
+                  <img src="https://via.placeholder.com/50" alt="Profile Image">
+                </div>
+                <div class="user-info">
+                  <span class="username">Deependra s</span>
+                  <span class="title"> <br>ds@gmail.com</span>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="main">
+      <div class="main-top">
+        <div class="formcontent">
+        <p>Explore the universe!</p>
+        <div>
+          <i class="fas fa-user" style="margin-right: 20px;"></i>
+       
+        <button class="btn" type="submit">Post a job</button>
+      </div>
+      </div>
+       
+      </div>
+      <div class="main-body" id="tags_bar">
+        <h5>Settings</h5>
+        <p>All about your personal details and password</p>
+        <div class="formcontent">
+          <div class="tags_bar">
+            <div class="bar">
+            <div class="tag" id="personal-info-toggle">
+              <i class="fas fa-user"></i>
+              <a href="#" id="personal-info-toggle">Personal Information</a>
+            </div>
+            <div class="tag">
+              <i class="fas fa-question-circle"></i>
+              <span>Change-password</span>
+            </div>
+          </div>
+          </div>
+          <div class="personal-details" id="personal-details">
+            <div class="cover-photo">
+              <img src="https://via.placeholder.com/800x200" alt="Cover Photo Placeholder">
+          </div>
+          <div class="profile-photo">
+            <img src="https://via.placeholder.com/200" alt="Profile Photo Placeholder">
+        </div>
+            <form>
+              <div class="name-container">
+                <div>
+                <label class="labl" for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="First name">
+              </div>
+              <div>
+                <label class="labl" for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Last name">
+              </div>
+              </div>
+              <div class="name-container">
+                <div>
+                  <label class="labl" for="email">Email:</label>
+                  <input type="email" id="email" name="email" placeholder="Email address"><br>
+              </div>
+              <div>
+                <label class="labl" for="mobilenumber">Mobile number</label>
+                <input type="text" id="mobilenumber" name="mobilenumber" placeholder="Mobile number">
+              </div>
+              </div>
+              <label class="labl" for="address">Address</label>
+              <input type="text" id="address" name="address" placeholder="Enter your address"><br>
+              <div class="name-container">
+                <div>
+                <label class="labl" for="city">City</label>
+                <input type="text" id="city" name="city" placeholder="State name">
+              </div>
+              <div>
+                <label class="labl" for="state">State</label>
+                <input type="text" id="state" name="state" placeholder="State name">
+              </div>
+              </div>
+              <div class="name-container">
+                <div>
+                <label class="labl" for="city">Country</label>
+                <input type="text" id="city" name="city" placeholder="State name">
+              </div>
+              <div>
+                <label class="labl" for="zipcode">Zip code</label>
+                <input type="text" id="zipcode" name="zipcode" placeholder="zipcode">
+              </div>
+              </div>
+              <div class="btn-container">
+              <button class="btn1" type="reset">Cancel</button>
+              <button class="btn" type="submit">Save Changes</button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+    // JavaScript to toggle visibility of tags_bar when clicking on Settings icon
+    document.addEventListener("DOMContentLoaded", function() {
+      const settingsIcon = document.querySelector(".fa-cog");
+      const tagsBar = document.getElementById("tags_bar");
+      let isVisible = false;
+
+      settingsIcon.parentElement.addEventListener("click", function(event) {
+        event.preventDefault();
+        isVisible = !isVisible;
+        tagsBar.style.display = isVisible ? "block" : "none";
+        document.body.classList.toggle("light-blue-bg", isVisible);
+      });
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+      const personalInfoToggle = document.getElementById("personal-info-toggle");
+      const personalDetails = document.getElementById("personal-details");
+
+      personalInfoToggle.addEventListener("click", function(event) {
+        event.preventDefault();
+        personalDetails.classList.toggle("show");
+      });
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+      const settingsIcon = document.querySelector(".fa-cog");
+      const tagsBar = document.getElementById("tags_bar");
+      let isVisible = false;
+
+      settingsIcon.parentElement.addEventListener("click", function(event) {
+        event.preventDefault();
+        isVisible = !isVisible;
+        tagsBar.style.display = isVisible ? "block" : "none";
+        document.body.classList.toggle("light-blue-bg", isVisible);
+      });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const personalInfoToggle = document.getElementById("personal-info-toggle");
+      const personalDetails = document.getElementById("personal-details");
+      const form = document.querySelector("form");
+
+      personalInfoToggle.addEventListener("click", function(event) {
+        event.preventDefault();
+        personalDetails.classList.toggle("show");
+      });
+
+      // Add form validation
+      form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        let valid = true;
+
+        // Validate inputs
+        const inputs = form.querySelectorAll("input");
+        inputs.forEach(function(input) {
+          if (input.value.trim() === "") {
+            input.classList.add("invalid");
+            valid = false;
+          } else {
+            input.classList.remove("invalid");
+          }
+        });
+
+        // If all inputs are valid, submit the form
+        if (valid) {
+          // Form submission code goes here
+          alert("Personal details updated successfully!");
+        } else {
+          alert("Please fill in all the required fields.");
+        }
+      });
+    });
+    
+  </script>
+</body>
+</html>
